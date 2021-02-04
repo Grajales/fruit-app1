@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require('../models').User;
+const Fruit = require('../models').Fruit;
 
 // INDEX
 router.get("/", (req, res) => {
@@ -46,7 +47,15 @@ router.post("/", (req, res) => {
 
 // GET USERS PROFILE
 router.get("/profile/:id", (req, res) => {
-  User.findByPk(req.params.id).then((user) => {
+  User.findByPk(req.params.id, {
+    include: [
+      {
+        model: Fruit,
+        attributes: ['id', 'name']
+      }
+    ]
+  }).then((user) => {
+    console.log(user);
     res.render("users/profile.ejs", { user });
   });
 });
