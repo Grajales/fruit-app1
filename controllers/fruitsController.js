@@ -3,7 +3,7 @@ const router = express.Router();
 
 // const fruits = require("../fruits.js");
 const Fruit = require('../models').Fruit
-const  User = require('../models').User;
+const User = require('../models').User;
 
 //Sequelize GET route
 router.get("/", (req, res) => {
